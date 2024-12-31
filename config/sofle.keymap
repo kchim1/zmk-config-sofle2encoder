@@ -52,13 +52,22 @@
             #binding-cells = <0>;
             continue-list = <POUND MINUS BACKSPACE UNDERSCORE>;
         };
+
+        ht: ht {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Hold tap behavior";
+            bindings = <&mt>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
     };
 
     macros {
         GMFID: GMFID {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp C &kp H &kp I &kp M &kp N1>;
+            bindings = <&kp K &kp C &kp H &kp I &kp M &kp N1 &kp TAB>;
             label = "GMFID";
         };
 
@@ -84,11 +93,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&gresc            &sk N1  &sk N2    &sk N3    &sk N4     &sk N5                                  &sk N6  &sk N7     &sk N8     &sk N9    &sk N0    &sk MINUS
-&kp TAB           &sk Q   &sk W     &sk E     &sk R      &sk T                                   &sk Y   &sk U      &sk I      &sk O     &sk P     &kp BSPC
-&kp LEFT_SHIFT    &sk A   &sk S     &sk D     &sk F      &sk G                                   &sk H   &sk J      &sk K      &sk L     &sk SEMI  &sk SQT
-&kp LEFT_CONTROL  &sk Z   &sk X     &sk C     &sk V      &sk B   &kp C_MUTE    &kp C_PLAY_PAUSE  &sk N   &sk M      &sk COMMA  &sk DOT   &sk FSLH  &kp RSHFT
-                          &kp LGUI  &kp LALT  &kp LCTRL  &mo 1   &kp SPACE     &kp ENTER         &mo 2   &kp RCTRL  &kp LALT   &kp RGUI
+&gresc          &ht LS(N1) N1  &ht LS(N2) N2  &ht LS(N3) N3  &ht LS(N4) N4  &ht LS(N5) N5                                  &ht RS(N6) N6  &ht RS(N7) N7  &ht RS(N8) N8        &ht RS(N9) N9       &ht RS(N0) N0       &ht RS(MINUS) MINUS
+&kp TAB         &ht LS(Q) Q    &ht LS(W) W    &ht LS(E) E    &ht LS(R) R    &ht LS(T) T                                    &ht RS(Y) Y    &ht RS(U) U    &ht RS(I) I          &ht RS(O) O         &ht RS(P) P         &kp BSPC
+&kp LEFT_SHIFT  &ht LS(A) A    &ht LS(S) S    &ht LS(D) D    &ht LS(F) F    &ht LS(G) G                                    &ht RS(H) H    &ht RS(J) J    &ht RS(K) K          &ht RS(L) L         &ht RS(SEMI) SEMI   &ht RS(SQT) SQT
+&kp DEL         &ht LS(Z) Z    &ht LS(X) X    &ht LS(C) C    &ht LS(V) V    &ht LS(B) B    &kp C_MUTE    &kp C_PLAY_PAUSE  &ht RS(N) N    &ht RS(M) M    &ht RS(COMMA) COMMA  &ht RS(DOT) PERIOD  &ht RS(FSLH) SLASH  &kp RSHFT
+                               &kp LCTRL      &kp LALT       &kp LGUI       &mo 1          &kp SPACE     &kp ENTER         &mo 2          &kp RCTRL      &kp LALT             &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
